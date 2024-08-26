@@ -8,4 +8,4 @@ class ReservePage {
 
 }
 
-export default HomePage
+export default ReservePage

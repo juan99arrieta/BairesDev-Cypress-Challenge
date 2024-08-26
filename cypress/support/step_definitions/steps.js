@@ -1,6 +1,6 @@
 import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor'
 import HomePage from '../../e2e/pages/homePage/HomePage'
-import HomePage from '../../e2e/pages/reservePage/ReservePage'
+import ReservePage from '../../e2e/pages/reservePage/ReservePage'
 
 const homePage = new HomePage()
 const reservePage = new ReservePage()
