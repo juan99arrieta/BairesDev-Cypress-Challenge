@@ -23,7 +23,31 @@ When('I click the {string} button', (buttonName) => {
 
 Then('I should be on the {string}', (page) => {
   if (page === "ReservePage") {
-    //cy.url().should('include', '/reserve.php');  // Asegúrate de que la URL contenga la parte correcta que indica que estás en la página de reservas
     reservePage.validateReservePage()
   }
+});
+
+Then('I should see a list of flights for the route {string} to {string}', (departureCity, destinationCity) => {
+  reservePage.validateCitiesInTittleMessage(departureCity, destinationCity)
+  reservePage.validateFlightsListIsDisplayed()
+});
+
+Then('Each flight should have the Flight number', () => {
+  reservePage.validateFlightNumberInFlightList()
+});
+
+Then('Each flight should have the Airline', () => {
+  reservePage.validateAirlineInFlightList()
+});
+
+Then('Each flight should have the Depart Time', () => {
+  reservePage.validateDepartTimeInFlightList()
+});
+
+Then('Each flight should have the Arrive Time', () => {
+  reservePage.validateArriveTimeInFlightList()
+});
+
+Then('Each flight should have the Flight price', () => {
+  reservePage.validateFlightPriceInFlightList()
 });
