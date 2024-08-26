@@ -12,13 +12,14 @@
     "cy:test": "cypress run --config baseUrl=${baseUrl}"
   },
   "keywords": [],
-  "author": "",
+  "author": "Juan Arrieta",
   "license": "ISC",
-  "description": "",
+  "description": "BairesDev Cypress Challenge",
   "devDependencies": {
     "@badeball/cypress-cucumber-preprocessor": "^20.1.2",
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.2",
-    "cypress": "^13.13.3"
+    "cypress": "^13.13.3",
+    "cypress-mochawesome-reporter": "^3.8.2"
   },
   "cypress-cucumber-preprocessor": {
     "step_definitions": "cypress/support/step_definitions/",
