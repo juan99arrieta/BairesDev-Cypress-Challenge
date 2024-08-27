@@ -8,6 +8,7 @@ const reservePage = new ReservePage()
 const purchasePage = new PurchasePage()
 
 let flightData = {};
+let totalCost;
 
 Given('I am on the {string}', (page) => {
   if (page === "HomePage") {
@@ -39,6 +40,7 @@ When('I click the {string} button', (buttonName) => {
   if(buttonName === "Choose This Flight"){
     flightData = reservePage.getFlightData(0)
     reservePage.clickChooseTheseFlightButton(0)
+    totalCost = purchasePage.getTotalCost()
   }
 });
 
@@ -87,3 +89,7 @@ Then('Total Cost should be the sum of Price and Arbitrary Fees and Taxes', () =>
 Then('Purchase form is displayed', () => {
   purchasePage.validatePurchaseFormIsVisible()
 });
+
+When('I type {string} in the {string} inputBox', (inputValue, inputBox) => {
+  purchasePage.inputDataIntoInputBox(inputValue, inputBox)
+})

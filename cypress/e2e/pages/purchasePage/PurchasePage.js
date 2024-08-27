@@ -9,6 +9,13 @@ class PurchasePage {
           });
     }
 
+    getTotalCost() {
+        return cy.get('p:contains("Total Cost:")').find('em').invoke('text').then(text => {
+          const totalCost = parseFloat(text.trim());
+          return totalCost;
+        });
+      }
+
     validatePurchasePage() {
         return cy.url().should('include', '/purchase.php');
     }
@@ -83,6 +90,40 @@ class PurchasePage {
         cy.get(elements.PURCHASEPAGE.PURCHASE_FORM_CARD_NAME_INPUT).should('be.visible').and('have.attr', 'placeholder', 'John Smith');
         cy.get(elements.PURCHASEPAGE.PURCHASE_FORM_REMEMBER_CHECKBOX).should('be.visible');
         cy.get(elements.PURCHASEPAGE.PURCHASE_FORM_PURCHASE_FLIGHT_BUTTON).should('be.visible').and('have.value', 'Purchase Flight');
+    }
+
+    inputDataIntoInputBox(inputValue, inputBox){
+        switch (inputBox) {
+            case "name":
+                cy.get(elements.PURCHASEPAGE.PURCHASE_FORM_NAME_INPUT).should('be.visible').clear().type(inputValue)
+                break;
+            case "adress":
+                cy.get(elements.PURCHASEPAGE.PURCHASE_FORM_ADRESS_INPUT).should('be.visible').clear().type(inputValue)
+                break;
+            case "city":
+                cy.get(elements.PURCHASEPAGE.PURCHASE_FORM_CITY_INPUT).should('be.visible').clear().type(inputValue)
+                break;
+            case "state":
+                cy.get(elements.PURCHASEPAGE.PURCHASE_FORM_STATE_INPUT).should('be.visible').clear().type(inputValue)
+                break;
+            case "zipCode":
+                cy.get(elements.PURCHASEPAGE.PURCHASE_FORM_ZIPCODE_INPUT).should('be.visible').clear().type(inputValue)
+                break;
+            case "cardNumber":
+                cy.get(elements.PURCHASEPAGE.PURCHASE_FORM_CARD_NUMBER_INPUT).should('be.visible').clear().type(inputValue)
+                break;
+            case "cardMonth":
+                cy.get(elements.PURCHASEPAGE.PURCHASE_FORM_CARD_MONTH_INPUT).should('be.visible').clear().type(inputValue)
+                break;
+            case "cardYear":
+                cy.get(elements.PURCHASEPAGE.PURCHASE_FORM_CARD_YEAR_INPUT).should('be.visible').clear().type(inputValue)
+                break;
+            case "cardName":
+                cy.get(elements.PURCHASEPAGE.PURCHASE_FORM_CARD_NAME_INPUT).should('be.visible').clear().type(inputValue)
+                break;
+            default:
+                cy.log('No inputBox found');
+        }
     }
 }
 
