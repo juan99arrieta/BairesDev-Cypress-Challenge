@@ -20,7 +20,7 @@ jobs:
           with:
             record: true
             parallel: true
-            command: "npm run cy:chrome:headless"
+            command: "npm run cy:chrome"
           env:
             CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
         
