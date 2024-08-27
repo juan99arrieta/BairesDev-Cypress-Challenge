@@ -2,8 +2,36 @@ var elements = require('./elements')
 
 class ReservePage {
 
+    openReservePage() {
+        cy.url().then((currentUrl) => {
+            if (!currentUrl.includes('reserve.php')) {
+                return cy.visit('https://blazedemo.com/reserve.php');
+            }
+          });
+    }
+
     validateReservePage() {
         return cy.url().should('include', '/reserve.php');
+    }
+
+    clickChooseTheseFlightButton(rowNumber){
+        cy.get(elements.RESERVEPAGE.FLIGHTSLIST_TABLE).find('tr').eq(rowNumber+1).find('td').eq(0).click()
+    }
+
+    getFlightData(rowIndex) {
+        const flightData = {};
+        cy.get(elements.RESERVEPAGE.FLIGHTSLIST_TABLE).eq(rowIndex).within(() => {
+          cy.get('td').eq(1).invoke('text').then((flightNumber) => {
+            flightData.flightNumber = flightNumber.trim();
+          });
+          cy.get('td').eq(2).invoke('text').then((airline) => {
+            flightData.airline = airline.trim();
+          });
+          cy.get('td').eq(5).invoke('text').then((price) => {
+            flightData.price = price.trim();
+          });
+        });
+        return flightData;
     }
 
     validateCitiesInTittleMessage(departureCity, destinationCity){
