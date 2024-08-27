@@ -14,7 +14,11 @@ class PurchasePage {
           const totalCost = parseFloat(text.trim());
           return totalCost;
         });
-      }
+    }
+
+    clickPurchaseFlightButton(){
+        cy.get(elements.PURCHASEPAGE.PURCHASE_FORM_PURCHASE_FLIGHT_BUTTON).should('be.visible').click()
+    }
 
     validatePurchasePage() {
         return cy.url().should('include', '/purchase.php');
@@ -124,6 +128,10 @@ class PurchasePage {
             default:
                 cy.log('No inputBox found');
         }
+    }
+
+    selectCardTypeFromDropDown(cardTypeData){
+        cy.get(elements.PURCHASEPAGE.PURCHASE_FORM_CARD_TYPE_INPUT).should('be.visible').select(cardTypeData)
     }
 }
 

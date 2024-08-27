@@ -2,10 +2,12 @@ import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor'
 import HomePage from '../../e2e/pages/homePage/HomePage'
 import ReservePage from '../../e2e/pages/reservePage/ReservePage'
 import PurchasePage from '../../e2e/pages/purchasePage/PurchasePage'
+import ConfirmationPage from '../../e2e/pages/confirmationPage/ConfirmationPage'
 
 const homePage = new HomePage()
 const reservePage = new ReservePage()
 const purchasePage = new PurchasePage()
+const confirmationPage = new ConfirmationPage()
 
 let flightData = {};
 let totalCost;
@@ -42,6 +44,9 @@ When('I click the {string} button', (buttonName) => {
     reservePage.clickChooseTheseFlightButton(0)
     totalCost = purchasePage.getTotalCost()
   }
+  if(buttonName === "Purchase Flight"){
+    purchasePage.clickPurchaseFlightButton()
+  }
 });
 
 Then('I should be on the {string}', (page) => {
@@ -50,6 +55,9 @@ Then('I should be on the {string}', (page) => {
   }
   if (page === "PurchasePage") {
     purchasePage.validatePurchasePage()
+  }
+  if(page === "ConfirmationPage"){
+    confirmationPage.validateConfirmationPage()
   }
 });
 
@@ -92,4 +100,8 @@ Then('Purchase form is displayed', () => {
 
 When('I type {string} in the {string} inputBox', (inputValue, inputBox) => {
   purchasePage.inputDataIntoInputBox(inputValue, inputBox)
+})
+
+When('I select {string} from the card type drop list', (cardTypeData) => {
+  purchasePage.selectCardTypeFromDropDown(cardTypeData)
 })
