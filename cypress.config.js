@@ -16,9 +16,10 @@ module.exports = defineConfig({
       return config;
     },
 	specPattern: "**/*.feature",
-  },
+  video: true,
   videosFolder: "cypress/reports/videos",
   screenshotsFolder: "cypress/reports/screenshots",
+  },
   reporter: 'cypress-mochawesome-reporter',
     reporterOptions: {
       charts: true,
